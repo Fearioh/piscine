@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:14:06 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/21 13:21:48 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:24:55 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_putchar(char c)
 
 void	ft_print_alphabet(void)
 {
-	char alpha = 'a';
+	char	alpha;
 
+	alpha = 'a';
 	while (alpha <= 'z')
 	{
 		ft_putchar(alpha);
