@@ -6,11 +6,11 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:05:08 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/21 13:06:35 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:12:31 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
