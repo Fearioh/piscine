@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:27:33 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/21 13:28:30 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:30:52 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,4 @@ void	ft_print_reverse_alphabet(void)
 		ft_putchar(alpha);
 		alpha--;
 	}
-}
-
-int main(void)
-{
-	ft_print_reverse_alphabet();
 }
