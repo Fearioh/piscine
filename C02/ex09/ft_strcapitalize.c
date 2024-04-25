@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:52:49 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/25 23:16:13 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/25 23:20:11 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_checkfirst(char *str, int i, int first)
 	return 0;
 }
 
-int	ft_norme(int change, char *str, int i)
+int	ft_reset_check(int change, char *str, int i)
 {
 	if (change == 1 && ((str[i] >= 'A' && str[i] <= 'Z') 
 			|| (str[i] >= '0' && str[i] <= '9')))
@@ -66,7 +66,7 @@ char	*ft_strcapitalize(char *str)
 			str[i] -= 32;
 			change = 0;
 		}
-		change = ft_norme(change, str, i);
+		change = ft_reset_check(change, str, i);
 		i++;
 	}
 	return str;
