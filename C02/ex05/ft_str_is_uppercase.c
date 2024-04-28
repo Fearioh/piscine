@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:54:38 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/24 18:55:33 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/28 12:22:47 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	main(void)
 {
 	int	i = 0;
 
-	i = ft_str_is_uppercase("AZEOAE JZOEJA");
-	printf("%d\n", i);
+	i = ft_str_is_uppercase("QWERTYUIOPASDFGHJKLZXCVBNM");
+	int j = ft_str_is_uppercase("FSKDSKDASDSJKASDDFEx");
+	
+	printf("%d%d\n", i,j);
 }

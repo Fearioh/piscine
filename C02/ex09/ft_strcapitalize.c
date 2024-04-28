@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:52:49 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/25 23:20:11 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/28 12:30:34 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,30 @@ char	*ft_strcapitalize(char *str)
 	return str;
 }
 
-int	main(void)
+#include <unistd.h>
+
+char	*ft_strcapitalize(char *src);
+
+void	ft_putstr(char *str)
 {
-	char str[21] = "salut les homies";
-	
-	ft_strcapitalize(str);
-	printf("%s\n", str);
+	int l;
+
+	l = 0;
+	while (str[l])
+	{
+		l++;
+	}
+	write(1, str, l);
+}
+
+int		main()
+{
+	char c[] = "Salut, coMMent tu vAs ? 42mOts quArAnTe-dEux; cinQuante+et+un";
+	ft_putstr("Salut, Comment Tu Vas ? 42mots Quarante-Deux; Cinquante+Et+Un:");
+	ft_putstr("\n");
+	ft_putstr(ft_strcapitalize(c));
+	ft_putstr("\t");
+	ft_putstr(":");
+	ft_putstr("\t");
+	ft_putstr(c);
 }

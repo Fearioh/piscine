@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:54:11 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/24 15:56:45 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/28 12:20:07 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int	main(void)
 	int	i = 0;
 
 	i = ft_str_is_numeric("12981d92819");
-	printf("%d\n", i);
+	int j = ft_str_is_numeric("334934239391234567890");
+	printf("%d%d\n", i,j);
 }

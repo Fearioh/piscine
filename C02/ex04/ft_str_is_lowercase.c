@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:58:27 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/24 15:59:43 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/28 12:21:40 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_str_is_lowercase(char *str)
 
 	i = 0;
 	true = 1;
-	while (i < ft_strlen(str))
+	while (str[i])
 	{
 		if (!(str[i] >= 'a' && str[i] <= 'z'))
 			true = 0;
@@ -43,5 +43,6 @@ int	main(void)
 	int	i = 0;
 
 	i = ft_str_is_lowercase("dzfAdezef");
-	printf("%d\n", i);
+	int j = ft_str_is_lowercase("qwertyuiopasdfghjklzxcvbnm");
+	printf("%d%d\n", i, j);
 }
