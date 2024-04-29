@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 19:56:28 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/29 22:10:26 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/29 22:20:40 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	ft_putnbr_base(int nbr, char *base)
 	char	c;
 
 	c = '0';
-	if (nbr < 0)
-		write(1, "-", 1);
 	error = ft_errorcheck(base);
 	if (error == 1)
 		return;
+	if (nbr < 0)
+		write(1, "-", 1);
 	if (nbr / ft_strlen(base) != 0)
 	{
 		if (nbr < 0)
@@ -83,5 +83,5 @@ void	ft_putnbr_base(int nbr, char *base)
 
 int	main(void)
 {
-	ft_putnbr_base(-2147483648, "01234567");
+	ft_putnbr_base(-2147483648, "01");
 }
