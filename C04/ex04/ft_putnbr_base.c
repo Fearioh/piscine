@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 19:56:28 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/29 21:58:52 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/29 22:10:26 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,23 @@ void	ft_putnbr_base(int nbr, char *base)
 	char	c;
 
 	c = '0';
+	if (nbr < 0)
+		write(1, "-", 1);
 	error = ft_errorcheck(base);
 	if (error == 1)
 		return;
-	if (nbr / ft_strlen(base) > 0)
-		ft_putnbr_base(nbr / ft_strlen(base) , base);
+	if (nbr / ft_strlen(base) != 0)
+	{
+		if (nbr < 0)
+			ft_putnbr_base(nbr / ft_strlen(base) * (-1), base);
+		else
+			ft_putnbr_base(nbr / ft_strlen(base) , base);
+	}
 	c = ft_nbrtobase(nbr, base);
 	write (1, &c, 1);
 }
 
 int	main(void)
 {
-	ft_putnbr_base(123, "poneyvif");
+	ft_putnbr_base(-2147483648, "01234567");
 }
