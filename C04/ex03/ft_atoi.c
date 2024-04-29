@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 21:47:49 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/28 22:12:21 by adelat           ###   ########.fr       */
+/*   Updated: 2024/04/29 21:08:41 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,18 @@ int	ft_atoi(char *str)
 	pos = 0;
 	nbr = 0;
 	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\t' || str[i] == '\n'
-			|| str[i] == '\r' || str[i] == '\v')
+		|| str[i] == '\r' || str[i] == '\v')
 				i++;
-	while (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9'))
-	{
-		if (str[i] == '-')
+	while (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
 			pos++;
-		if (str[i] >= '0' && str[i] <= '9')
-			nbr = nbr * 10 + ft_nbr(str, i, nbr);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + ft_nbr(str, i, nbr);
 		i++;
 	}
 	if (pos % 2 == 1)
 		return (nbr * (-1));
-	else
 	return nbr;
 }
 
@@ -67,14 +66,15 @@ void	ft_putnbr(int nb)
 	write (1, &c, 1);
 }
 
-int	main(void)
+int    main(void)
 {
-	int i = 0;
-	int j = 0;
-
-	i = ft_atoi("a2");
-	j = atoi("a2");
-	ft_putnbr(i);
-	printf("\nft_atoi \natoi\n");
-	ft_putnbr(j);
+    printf("122:%d\n", ft_atoi("  \n  -++---+++--++++----++++----122-bndnnff"));
+    printf("-42:%d\n", ft_atoi(" --+-42sfs:f545"));
+    printf("0:%d\n", ft_atoi("\0 1337"));
+    printf("0:%d\n", ft_atoi("-0"));
+    printf("0:%d\n", ft_atoi(" - 1 3 2 5 6 3 2 1 6 7"));
+    printf("-1325632167:%d\n", ft_atoi("-1325632167"));
+    printf("-100:%d\n", ft_atoi("-100"));
+    printf("min:%d\n", ft_atoi("\t---+2147483648"));
+    printf("max:%d\n", ft_atoi("\v2147483647"));
 }
