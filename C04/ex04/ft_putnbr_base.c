@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 19:56:28 by adelat            #+#    #+#             */
-/*   Updated: 2024/04/29 22:20:40 by adelat           ###   ########.fr       */
+/*   Updated: 2024/05/01 09:12:40 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	ft_errorcheck(char *base)
 	int	i;
 	int j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (base[i])
+	while (base[++i])
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-' || base[i] == ' ' 
+		|| base[i] == '\f' || base[i] == '\t' || base[i] == '\n'
+		|| base[i] == '\r' || base[i] == '\v')
 			return 1;
 		while(base[j])
 		{
@@ -41,7 +43,6 @@ int	ft_errorcheck(char *base)
 				return 1;
 			j++;
 		}
-		i++;
 	}
 	if (i < 2)
 		return 1;
@@ -69,19 +70,34 @@ void	ft_putnbr_base(int nbr, char *base)
 	if (error == 1)
 		return;
 	if (nbr < 0)
-		write(1, "-", 1);
-	if (nbr / ft_strlen(base) != 0)
 	{
-		if (nbr < 0)
-			ft_putnbr_base(nbr / ft_strlen(base) * (-1), base);
-		else
-			ft_putnbr_base(nbr / ft_strlen(base) , base);
+		nbr *= -1;
+		write(1, "-", 1);
 	}
+	if (nbr / ft_strlen(base) != 0)
+		ft_putnbr_base(nbr / ft_strlen(base) , base);
 	c = ft_nbrtobase(nbr, base);
 	write (1, &c, 1);
 }
 
-int	main(void)
+#include <unistd.h>
+
+void	ft_putnbr_base(int nbr, char *base);
+
+int		main(void)
 {
-	ft_putnbr_base(-2147483648, "01");
+	write(1, "42:", 3);
+	ft_putnbr_base(42, "0123456789");
+	write(1, "\n2a:", 4);
+	ft_putnbr_base(42, "0123456789abcdef");
+	write(1, "\n-2a:", 5);
+	ft_putnbr_base(-42, "0123456789abcdef");
+	write(1, "\n:", 2);
+	ft_putnbr_base(42, "");
+	write(1, "\n:", 2);
+	ft_putnbr_base(42, "0");
+	write(1, "\n:", 2);
+	ft_putnbr_base(42, "+-0123456789abcdef");
+	write(1, "\n:", 2);
+	ft_putnbr_base(42, "\t0123456789abcdef");
 }

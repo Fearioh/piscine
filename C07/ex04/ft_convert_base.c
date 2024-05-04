@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 21:39:38 by adelat            #+#    #+#             */
-/*   Updated: 2024/05/01 09:21:23 by adelat           ###   ########.fr       */
+/*   Created: 2024/05/01 15:37:45 by adelat            #+#    #+#             */
+/*   Updated: 2024/05/04 22:57:44 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <stdio.h>
 
 int	ft_error(char *base)
@@ -124,19 +125,93 @@ int	ft_atoi_base(char *str, char *base)
 	return error;
 }
 
-#include <stdio.h>
+int	ft_checkbase(int nb, char *base)
+{
+	long	nbr;
+	int	check;
 
-int	ft_atoi_base(char *str, char *base);
+	nbr = nb;
+	check = 0;
+	if (nbr < 0)
+		nbr *= -1;	
+	while (nbr / ft_strlen(base) > 0)
+	{
+		nbr = nbr / ft_strlen(base);
+		check++;
+	}
+	return check;
+}
+
+void	ft_conv_char(int base, int i, char *base_to, char *conv, long j)
+{
+	if (j < 0)
+		j *= -1;		
+	conv[base - i] = base_to[j];
+}
+
+
+
+void	ft_convert_nbr(int nb, int base, char *base_to, char *nbr, int move)
+{
+	long	j;
+	int i;
+
+	i = base;
+	if (nb < 0)
+	{
+		nbr[0] = '-';
+		nb *= -1;
+		move++;
+	}
+	j = nb;
+	if (--i == -1)
+		j = j % ft_strlen(base_to);
+	while (i > -1)
+	{
+		j = j / ft_strlen(base_to);
+		i--;
+	}
+	nbr[move] = base_to[j];
+	while(++i != base)
+		j = j * ft_strlen(base_to);
+	if (base > 0)
+		ft_convert_nbr(nb - j, base - 1, base_to, nbr, ++move);
+}
+
+void	ft_putend(int nb, int base, char *nbr)
+{
+	if (nb < 0)
+		nbr[base + 2] = '\0';
+	else
+		nbr[base + 1] = '\0';
+}
+
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
+{
+	int nb;
+	int error;
+	int	base;
+
+	base = 0;
+	error = ft_error(base_from);
+	if (error == 1)
+		return NULL;
+	error = ft_error(base_to);
+	if (error == 1)
+		return NULL;
+	nb = ft_atoi_base(nbr, base_from);
+	base = ft_checkbase(nb, base_to);
+	if (nb < 0)
+		nbr = malloc(sizeof(char) * (base + 3));
+	else
+		nbr = malloc(sizeof(char) * (base + 2));
+	ft_putend(nb, base, nbr);
+	ft_convert_nbr(nb, base, base_to, nbr, 0);
+	printf("%s\n", nbr);
+	return nbr;	
+}
 
 int	main(void)
 {
-	printf("-2147483648:%d\n", ft_atoi_base("-2147483648", "0123456789"));
-	printf("-42:%d\n", ft_atoi_base("   --------+-2a", "0123456789abcdef"));
-	printf("42:%d\n", ft_atoi_base("   -+-2a", "0123456789abcdef"));
-	printf("0:%d\n", ft_atoi_base("   --------+- 2a", "0123456789abcdef"));
-	printf("0:%d\n", ft_atoi_base("   --------+-z", "0123456789abcdef"));
-	printf("0:%d\n", ft_atoi_base("   --------+-2a", ""));
-	printf("0:%d\n", ft_atoi_base("   --------+-2a", "0"));
-	printf("0:%d\n", ft_atoi_base("   --------+-2a", "+-0"));
-	printf("0:%d\n", ft_atoi_base("   --------+-2a", "\t01"));
+	ft_convert_base("-234632423", "0123456789", "0123456789ABCDEF");
 }
