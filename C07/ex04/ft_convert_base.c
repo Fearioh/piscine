@@ -6,7 +6,7 @@
 /*   By: adelat <adelat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:37:45 by adelat            #+#    #+#             */
-/*   Updated: 2024/05/04 22:57:44 by adelat           ###   ########.fr       */
+/*   Updated: 2024/05/05 11:59:17 by adelat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_error(char *base)
 
 	i = 0;
 	j = 0;
+	if(!base)
+		return 1;
 	while (base[i])
 	{
 		j = i;
@@ -80,14 +82,14 @@ unsigned int	ft_base_to_nbr(char *str, char *base, int pos, int size)
 	
 	nb = 0;
 	i = 0;
-	j = -1;
+	j = 0;
 	more = 1;
 	while ((size = ft_strlen_atoi(&str[i], base)) != 0)
 	{
-		j= -1;
+		j= 0;
 		while(size-- > 1)
 			more = more * ft_strlen(base);
-		while (base[j] != str[i])
+		while (base[j] != str[i] && base[j])
 			j++;			
 		nb = nb + (more * (j));
 		more = 1;
@@ -202,16 +204,25 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	nb = ft_atoi_base(nbr, base_from);
 	base = ft_checkbase(nb, base_to);
 	if (nb < 0)
-		nbr = malloc(sizeof(char) * (base + 3));
+		nbr = malloc(sizeof(char) * (base + 3));		
 	else
 		nbr = malloc(sizeof(char) * (base + 2));
+	if (!nbr)
+		return (NULL);
 	ft_putend(nb, base, nbr);
 	ft_convert_nbr(nb, base, base_to, nbr, 0);
-	printf("%s\n", nbr);
-	return nbr;	
+	return nbr;
 }
+
+#include <stdio.h>
+
+char *ft_convert_base(char *nbr, char *base_from, char *base_to);
 
 int	main(void)
 {
-	ft_convert_base("-234632423", "0123456789", "0123456789ABCDEF");
+	char *nbr;
+	
+	nbr = ft_convert_base("--216317378", "0123456789", "01");
+	printf("%s\n", nbr);
+	free(nbr);
 }
